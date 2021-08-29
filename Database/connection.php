@@ -23,6 +23,13 @@ class Connection {
         } 
     }
 
+    /* for disconnection */
+    public function disconection()
+    {
+        $this->db-> null;
+        $this->isconnected = false;
+    }
+
 
 
 
