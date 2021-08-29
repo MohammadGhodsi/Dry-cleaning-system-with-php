@@ -13,4 +13,21 @@ class database extends connection
             session_status();
         }
     }
+
+    public function getrow($query , $param = [])
+    {
+
+        try 
+        {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute($param);
+            return $stmt->fetch();
+        }
+        catch(PDOException $error)
+        {
+            throw new Exception($error->getMessage());
+        }
+
+    }
+
 }
