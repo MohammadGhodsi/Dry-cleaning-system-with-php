@@ -14,6 +14,7 @@ class database extends connection
         }
     }
 
+    # for just one row
     public function getrow($query , $param = [])
     {
 
@@ -28,6 +29,21 @@ class database extends connection
             throw new Exception($error->getMessage());
         }
 
+    }
+    # for all rows
+    public function getrows($query , $param=[])
+    {
+        try 
+        {
+            $stmt = $this->db->prepare($query);
+            $stmt->execute($param);
+            return $stmt->fetchAll();
+
+        }
+        catch(PDOException $e)
+        {
+            throw new Exception($e->getMessage());
+        }
     }
 
 }
